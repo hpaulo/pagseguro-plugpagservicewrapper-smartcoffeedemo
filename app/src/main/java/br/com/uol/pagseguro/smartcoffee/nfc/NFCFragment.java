@@ -1,12 +1,13 @@
 package br.com.uol.pagseguro.smartcoffee.nfc;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import java.io.UnsupportedEncodingException;
@@ -17,8 +18,6 @@ import br.com.uol.pagseguro.smartcoffee.MainActivity;
 import br.com.uol.pagseguro.smartcoffee.R;
 import br.com.uol.pagseguro.smartcoffee.injection.DaggerNFCComponent;
 import br.com.uol.pagseguro.smartcoffee.utils.UIFeedback;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import br.com.uol.pagseguro.smartcoffee.injection.NFCComponent;
 import br.com.uol.pagseguro.smartcoffee.injection.UseCaseModule;
 
@@ -39,7 +38,6 @@ public class NFCFragment extends MvpFragment<NFCContract, NFCPresenter> implemen
                 .build();
         mInjector.inject(this);
         View rootview = inflater.inflate(R.layout.fragment_nfc, container, false);
-        ButterKnife.bind(this, rootview);
         return rootview;
     }
 
@@ -48,17 +46,17 @@ public class NFCFragment extends MvpFragment<NFCContract, NFCPresenter> implemen
         return mInjector.presenter();
     }
 
-    @OnClick(R.id.btn_nfc_read)
+//    @OnClick(R.id.btn_nfc_read)
     public void onReadCardClicked() {
         getPresenter().readNFCCard();
     }
 
-    @OnClick(R.id.btn_nfc_write)
+//    @OnClick(R.id.btn_nfc_write)
     public void onWriteCardClicked() {
         getPresenter().writeNFCCard();
     }
 
-    @OnClick(R.id.btn_nfc_abort)
+//    @OnClick(R.id.btn_nfc_abort)
     public void onAbortClicked() {
         getPresenter().abort();
     }

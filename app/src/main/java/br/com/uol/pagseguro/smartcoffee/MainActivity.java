@@ -1,18 +1,16 @@
 package br.com.uol.pagseguro.smartcoffee;
-
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import javax.inject.Inject;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import javax.inject.Inject;
 import br.com.uol.pagseguro.smartcoffee.injection.DaggerMainComponent;
 import br.com.uol.pagseguro.smartcoffee.printer.PrinterFragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import br.com.uol.pagseguro.smartcoffee.auth.AuthFragment;
 import br.com.uol.pagseguro.smartcoffee.injection.MainComponent;
 import br.com.uol.pagseguro.smartcoffee.injection.ScreenFlowModule;
@@ -22,9 +20,10 @@ import br.com.uol.pagseguro.smartcoffee.transactions.TransactionsFragment;
 import br.com.uol.pagseguro.smartcoffee.utils.FragmentFlowManager;
 import br.com.uol.pagseguro.smartcoffee.nfc.NFCFragment;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.bottom_navigation)
+    //@BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigationView;
 
     @Inject
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         mInjector.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
 
         initView();
     }

@@ -2,8 +2,11 @@ package br.com.uol.pagseguro.smartcoffee.demo;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
@@ -17,9 +20,6 @@ import br.com.uol.pagseguro.smartcoffee.injection.UseCaseModule;
 import br.com.uol.pagseguro.smartcoffee.injection.WrapperModule;
 import br.com.uol.pagseguro.smartcoffee.utils.FileHelper;
 import br.com.uol.pagseguro.smartcoffee.utils.UIFeedback;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoInternoPresenter> implements DemoInternoContract {
 
@@ -32,10 +32,10 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
     @Inject
     DemoInternoComponent mInjector;
 
-    @BindView(R.id.txtCoffeeAmount)
+    //@BindView(R.id.txtCoffeeAmount)
     TextView mCoffeeAmountTextview;
 
-    @BindView(R.id.txtTotalValue)
+    //@BindView(R.id.txtTotalValue)
     TextView mTotalValue;
     private boolean shouldShowDialog;
 
@@ -50,10 +50,72 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         mInjector.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coffee_selection);
-        ButterKnife.bind(this);
+
         dialog = new CustomDialog(this);
         dialog.setOnCancelListener(cancelListener);
 
+        //@BindView(R.id.txtCoffeeAmount)
+         mCoffeeAmountTextview = findViewById(R.id.txtCoffeeAmount);
+
+        //@BindView(R.id.txtTotalValue)
+         mTotalValue = findViewById(R.id.txtTotalValue);
+
+
+        Button btnPlus = findViewById(R.id.btnPlus);
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPlusClicked();
+            }
+        });
+
+        Button btnMinus = findViewById(R.id.btnMinus);
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onMinusClicked();
+            }
+        });
+
+        Button btnCredit = findViewById(R.id.btnCredit);
+        btnCredit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCreditClicked();
+            }
+        });
+
+        Button btnDebit = findViewById(R.id.btnDebit);
+        btnDebit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                onDebitClicked();
+            }
+        });
+
+        Button btnVoucher = findViewById(R.id.btnVoucher);
+        btnVoucher.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                onVoucherClicked();
+            }
+        });
+
+        Button btnLastTransaction = findViewById(R.id.btn_lasttransaction);
+        btnLastTransaction.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                lastTransaction();
+            }
+        });
+
+        Button btnRefundLastTransaction = findViewById(R.id.btnRefund);
+        btnRefundLastTransaction.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                onRefundClicked();
+            }
+        });
     }
 
     @NonNull
@@ -62,7 +124,7 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         return mInjector.presenter();
     }
 
-    @OnClick(R.id.btnMinus)
+    // @OnClick(R.id.btnMinus)
     public void onMinusClicked() {
         if (coffeeAmount <= 1) {
             return;
@@ -73,7 +135,7 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         setValue(mTotalValue, false);
     }
 
-    @OnClick(R.id.btnPlus)
+    // @OnClick(R.id.btnPlus)
     public void onPlusClicked() {
         coffeeAmount++;
         mCoffeeAmountTextview.setText(getResources().getQuantityString(R.plurals.coffe_amount, coffeeAmount, coffeeAmount));
@@ -91,7 +153,7 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         return Integer.valueOf(mTotalValue.getText().toString().replace("R$ ", "").replace(",", ""));
     }
 
-    @OnClick(R.id.btnCredit)
+    // @OnClick(R.id.btnCredit)
     public void onCreditClicked() {
         if (!mCanClick) {
             return;
@@ -101,7 +163,7 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         getPresenter().creditPayment(getValue());
     }
 
-    @OnClick(R.id.btnDebit)
+    // @OnClick(R.id.btnDebit)
     public void onDebitClicked() {
         if (!mCanClick) {
             return;
@@ -111,7 +173,7 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         getPresenter().doDebitPayment(getValue());
     }
 
-    @OnClick(R.id.btnVoucher)
+    // @OnClick(R.id.btnVoucher)
     public void onVoucherClicked() {
         if (!mCanClick) {
             return;
@@ -121,13 +183,13 @@ public class DemoInternoActivity extends MvpActivity<DemoInternoContract, DemoIn
         getPresenter().doVoucherPayment(getValue());
     }
 
-    @OnClick(R.id.btn_lasttransaction)
+    // @OnClick(R.id.btn_lasttransaction)
     public void lastTransaction() {
         shouldShowDialog = true;
         getPresenter().getLastTransaction();
     }
 
-    @OnClick(R.id.btnRefund)
+    // @OnClick(R.id.btnRefund)
     public void onRefundClicked() {
         if (!mCanClick) {
             return;

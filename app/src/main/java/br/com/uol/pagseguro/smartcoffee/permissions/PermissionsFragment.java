@@ -3,20 +3,19 @@ package br.com.uol.pagseguro.smartcoffee.permissions;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.uol.pagseguro.smartcoffee.HomeFragment;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import br.com.uol.pagseguro.smartcoffee.R;
 import br.com.uol.pagseguro.smartcoffee.utils.UIFeedback;
 
@@ -32,11 +31,11 @@ public class PermissionsFragment extends Fragment implements HomeFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_permissions, container, false);
-        ButterKnife.bind(this, rootView);
+
         return rootView;
     }
 
-    @OnClick(R.id.btn_permissions)
+//    @OnClick(R.id.btn_permissions)
     public void onRequestPermissionsClicked() {
         requestPermissions();
     }

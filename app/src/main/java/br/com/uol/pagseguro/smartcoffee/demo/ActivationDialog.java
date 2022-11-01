@@ -2,26 +2,25 @@ package br.com.uol.pagseguro.smartcoffee.demo;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import br.com.uol.pagseguro.smartcoffee.R;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ActivationDialog extends DialogFragment {
-
-    @BindView(R.id.edittext_input)
+    //@BindView(R.id.edittext_input)
     TextInputEditText mTextInputEditText;
 
-    @OnClick(R.id.button_confirm)
+    //@OnClick(R.id.button_confirm)
     public void onConfirmClicked() {
         mOnDismissListener.onDismiss(mTextInputEditText.getText() != null ? mTextInputEditText.getText().toString() : "");
         dismiss();
@@ -33,7 +32,16 @@ public class ActivationDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.dialog_input, container, false);
-        ButterKnife.bind(this, rootview);
+
+        mTextInputEditText = (TextInputEditText) rootview.findViewById(R.id.edittext_input);
+
+        Button btnConfirm = rootview.findViewById(R.id.button_confirm);
+        btnConfirm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                onConfirmClicked();
+            }
+        });
         return rootview;
     }
 

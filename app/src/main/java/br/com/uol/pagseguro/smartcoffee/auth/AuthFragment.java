@@ -1,18 +1,17 @@
 package br.com.uol.pagseguro.smartcoffee.auth;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
 
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import javax.inject.Inject;
 
 import br.com.uol.pagseguro.smartcoffee.HomeFragment;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import br.com.uol.pagseguro.smartcoffee.MainActivity;
 import br.com.uol.pagseguro.smartcoffee.R;
 import br.com.uol.pagseguro.smartcoffee.injection.AuthComponent;
@@ -36,22 +35,22 @@ public class AuthFragment extends MvpFragment<AuthContract, AuthPresenter> imple
                 .build();
         mInjector.inject(this);
         View rootView = inflater.inflate(R.layout.fragment_auth, container, false);
-        ButterKnife.bind(this, rootView);
+//        ButterKnife.bind(this, rootView);
 
         return rootView;
     }
 
-    @OnClick(R.id.btn_authentication_check)
+    //@OnClick(R.id.btn_authentication_check)
     public void onCheckAuthClicked() {
         getPresenter().checkIsAuthenticated();
     }
 
-    @OnClick(R.id.btn_authentication_request)
+    //@OnClick(R.id.btn_authentication_request)
     public void onRequestAuthClicked() {
         getPresenter().requestAuth();
     }
 
-    @OnClick(R.id.btn_authentication_invalidate)
+    //@OnClick(R.id.btn_authentication_invalidate)
     public void deactivate() {
         getPresenter().deactivate();
     }

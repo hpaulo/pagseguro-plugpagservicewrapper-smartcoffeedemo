@@ -2,12 +2,13 @@ package br.com.uol.pagseguro.smartcoffee.transactions;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import javax.inject.Inject;
@@ -21,8 +22,6 @@ import br.com.uol.pagseguro.smartcoffee.injection.TransactionsComponent;
 import br.com.uol.pagseguro.smartcoffee.injection.UseCaseModule;
 import br.com.uol.pagseguro.smartcoffee.utils.FileHelper;
 import br.com.uol.pagseguro.smartcoffee.utils.UIFeedback;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class TransactionsFragment extends MvpFragment<TransactionsContract, TransactionsPresenter> implements TransactionsContract, HomeFragment {
 
@@ -42,7 +41,7 @@ public class TransactionsFragment extends MvpFragment<TransactionsContract, Tran
                 .build();
         mInjector.inject(this);
         View rootView = inflater.inflate(R.layout.fragment_transactions, container, false);
-        ButterKnife.bind(this, rootView);
+//        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -51,48 +50,48 @@ public class TransactionsFragment extends MvpFragment<TransactionsContract, Tran
         return mInjector.presenter();
     }
 
-    @OnClick(R.id.btn_smartpos_credit)
+//    @OnClick(R.id.btn_smartpos_credit)
     public void onCreditClicked() {
         getPresenter().creditPayment();
     }
 
-    @OnClick(R.id.btn_smartpos_credit_with_seller_installments)
+//    @OnClick(R.id.btn_smartpos_credit_with_seller_installments)
     public void onCreditWithSellerInstallmentsClicked() {
         getPresenter().doCreditPaymentWithSellerInstallments();
     }
 
-    @OnClick(R.id.btn_smartpos_credit_with_buyer_installments)
+//    @OnClick(R.id.btn_smartpos_credit_with_buyer_installments)
     public void onCreditWithBuyerInstallmentsClicked() {
         getPresenter().doCreditPaymentWithBuyerInstallments();
     }
 
-    @OnClick(R.id.btn_smartpos_debit)
+//    @OnClick(R.id.btn_smartpos_debit)
     public void onDebitClicked() {
         getPresenter().doDebitPayment();
     }
 
-    @OnClick(R.id.btn_smartpos_voucher)
+//    @OnClick(R.id.btn_smartpos_voucher)
     public void onVoucherClicked() {
         getPresenter().doVoucherPayment();
     }
 
-    @OnClick(R.id.btn_smartpos_void_payment)
+//    @OnClick(R.id.btn_smartpos_void_payment)
     public void onRefundClicked() {
         ActionResult actionResult = FileHelper.readFromFile(getContext());
         getPresenter().doRefundPayment(actionResult);
     }
 
-    @OnClick(R.id.btn_smartpos_void_print_stablishment)
+//    @OnClick(R.id.btn_smartpos_void_print_stablishment)
     public void onPrintStablishmentClicked() {
         getPresenter().printStablishmentReceipt();
     }
 
-    @OnClick(R.id.btn_smartpos_void_print_customer)
+//    @OnClick(R.id.btn_smartpos_void_print_customer)
     public void onPrintCustomerClicked() {
         getPresenter().printCustomerReceipt();
     }
 
-    @OnClick(R.id.btn_smartpos_get_last_transaction)
+//    @OnClick(R.id.btn_smartpos_get_last_transaction)
     public void onGetLastApprovedTransaction() {
         getPresenter().getLastTransaction();
     }

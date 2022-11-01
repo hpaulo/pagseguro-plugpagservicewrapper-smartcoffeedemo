@@ -223,8 +223,8 @@ public class TransactionsUseCase {
         PlugPagCustomPrinterLayout customDialog = new PlugPagCustomPrinterLayout();
         customDialog.setTitle("Teste: Imprimir via do client?");
         customDialog.setButtonBackgroundColor("#00ff33");
-        customDialog.setConfirmText("Yes");
-        customDialog.setCancelText("No");
+        // customDialog.setConfirmText("Yes");
+        // customDialog.setCancelText("No");
         return customDialog;
     }
 }

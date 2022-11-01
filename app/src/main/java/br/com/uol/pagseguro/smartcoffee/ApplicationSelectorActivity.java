@@ -3,15 +3,17 @@ package br.com.uol.pagseguro.smartcoffee;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
+
+
+import androidx.annotation.Nullable;
 
 import javax.inject.Inject;
 
 import br.com.uol.pagseguro.smartcoffee.demo.DemoInternoActivity;
 import br.com.uol.pagseguro.smartcoffee.injection.ApplicationSelectorComponent;
 import br.com.uol.pagseguro.smartcoffee.utils.FragmentFlowManager;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ApplicationSelectorActivity extends Activity {
 
@@ -28,13 +30,25 @@ public class ApplicationSelectorActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_selector);
-        ButterKnife.bind(this);
-    }
+
+        Button btnDemo = findViewById(R.id.btn_demo);
+        btnDemo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDemoClicked();
+                // FormularioActivity formulario = new FormularioActivity();
 
 
-    @OnClick(R.id.btn_demo)
-    public void onDemoClicked() {
-        startActivity(DemoInternoActivity.class);
+            }
+        });
+
+        Button btnAllFeatures = findViewById(R.id.btn_all_features);
+        btnAllFeatures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onAllFeaturesClicked();
+            }
+        });
     }
 
     private void startActivity(Class<?> activity) {
@@ -43,7 +57,12 @@ public class ApplicationSelectorActivity extends Activity {
         finish();
     }
 
-    @OnClick(R.id.btn_all_features)
+    // @OnClick(R.id.btn_demo)
+    public void onDemoClicked() {
+        startActivity(DemoInternoActivity.class);
+    }
+
+    // @OnClick(R.id.btn_all_features)
     public void onAllFeaturesClicked() {
         startActivity(MainActivity.class);
     }
